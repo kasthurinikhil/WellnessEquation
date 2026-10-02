@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Log in to The Wellness Equation to access your personalized wellness dashboard and daily tracking.">
+    <title>Log In — The Wellness Equation</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/auth.css">
+</head>
+<body>
+
+    <main class="auth-wrapper">
+        <div class="auth-card">
+            <!-- Brand & Heading -->
+            <div class="auth-header">
+                <a href="index.html" class="auth-brand" aria-label="The Wellness Equation Home">
+                    <span class="brand-icon" aria-hidden="true">🌱</span>
+                    <span>The Wellness Equation</span>
+                </a>
+                <h1 class="auth-title">Welcome Back</h1>
+                <p class="auth-subtitle">Sign in to view your recommendations and log daily habits</p>
+            </div>
+
+            <!-- Error / Success Alert Box -->
+            <div id="auth-message" class="auth-message auth-message-hidden" role="alert"></div>
+
+            <!-- Login Form -->
+            <form id="login-form" class="auth-form" novalidate>
+                <!-- Email Field -->
+                <div class="form-group">
+                    <label for="login-email" class="form-label">Email Address</label>
+                    <input 
+                        type="email" 
+                        id="login-email" 
+                        name="email" 
+                        class="form-input" 
+                        placeholder="you@example.com" 
+                        required 
+                        autocomplete="email"
+                    >
+                </div>
+
+                <!-- Password Field -->
+                <div class="form-group">
+                    <label for="login-password" class="form-label">Password</label>
+                    <input 
+                        type="password" 
+                        id="login-password" 
+                        name="password" 
+                        class="form-input" 
+                        placeholder="Enter your password" 
+                        required 
+                        autocomplete="current-password"
+                    >
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" id="login-submit-btn" class="btn btn-primary btn-auth">
+                    <span>Log In</span>
+                </button>
+            </form>
+
+            <!-- Navigation to Sign Up -->
+            <div class="auth-footer">
+                <p>Don't have an account yet? <a href="signup.html">Create an Account</a></p>
+            </div>
+        </div>
+
+        <a href="index.html" class="back-to-home">← Return to Home</a>
+    </main>
+
+    <!-- Load Modular Auth Logic -->
+    <script type="module" src="js/auth.js"></script>
+</body>
+</html>

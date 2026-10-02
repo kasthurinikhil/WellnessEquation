@@ -1,0 +1,198 @@
+﻿/* ==========================================================================
+   THE WELLNESS EQUATION - AUTHENTICATION STYLES (css/auth.css)
+   Responsibility: Styling for login.html and signup.html forms & error states
+   ========================================================================== */
+
+/* Full-page centered layout for auth screens */
+.auth-wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 1.5rem;
+  background: radial-gradient(circle at top right, rgba(216, 243, 220, 0.4), transparent 60%),
+              radial-gradient(circle at bottom left, rgba(82, 183, 136, 0.15), transparent 50%),
+              var(--bg-color);
+}
+
+/* Authentication Card Container */
+.auth-card {
+  width: 100%;
+  max-width: 440px;
+  background-color: var(--surface-color);
+  border-radius: var(--radius-lg);
+  padding: 2.5rem 2rem;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid rgba(45, 106, 79, 0.12);
+  margin-bottom: 1.5rem;
+}
+
+/* Header within Auth Card */
+.auth-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.auth-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  margin-bottom: 1.25rem;
+}
+
+.auth-title {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--text-main);
+  margin-bottom: 0.4rem;
+}
+
+.auth-subtitle {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+}
+
+/* Form Controls */
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  text-align: left;
+}
+
+.form-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.form-input {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  font-size: 0.95rem;
+  font-family: inherit;
+  border: 1.5px solid #cbd5e1;
+  border-radius: var(--radius-md);
+  background-color: #fafbfb;
+  color: var(--text-main);
+  transition: var(--transition);
+  outline: none;
+}
+
+.form-input:focus {
+  border-color: var(--primary-color);
+  background-color: var(--surface-color);
+  box-shadow: 0 0 0 3px rgba(82, 183, 136, 0.25);
+}
+
+.form-input::placeholder {
+  color: #94a3b8;
+}
+
+.form-hint {
+  font-size: 0.8rem;
+  color: var(--text-light);
+}
+
+/* Feedback & Error Message Box */
+.auth-message {
+  padding: 0.85rem 1rem;
+  border-radius: var(--radius-md);
+  font-size: 0.9rem;
+  line-height: 1.4;
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  animation: fadeIn 0.2s ease-in-out;
+}
+
+.auth-message-hidden {
+  display: none;
+}
+
+.auth-message-error {
+  background-color: #ffebe9;
+  border: 1px solid #ff8182;
+  color: #c92a2a;
+}
+
+.auth-message-success {
+  background-color: #e6fcf5;
+  border: 1px solid #63e6be;
+  color: #087f5b;
+}
+
+/* Auth Action Button */
+.btn-auth {
+  width: 100%;
+  padding: 0.85rem;
+  font-size: 1.05rem;
+  margin-top: 0.5rem;
+}
+
+.btn-auth:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Card Bottom Navigation */
+.auth-footer {
+  text-align: center;
+  margin-top: 1.75rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--surface-alt);
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.auth-footer a {
+  font-weight: 600;
+}
+
+/* Return to Home Link */
+.back-to-home {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition: var(--transition);
+}
+
+.back-to-home:hover {
+  color: var(--primary-color);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .auth-card {
+    padding: 2rem 1.5rem;
+  }
+  
+  .auth-title {
+    font-size: 1.5rem;
+  }
+}

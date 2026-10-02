@@ -1,0 +1,641 @@
+/* ==========================================================================
+   THE WELLNESS EQUATION - DASHBOARD STYLES (css/dashboard.css)
+   Responsibility: Styling for dashboard.html cards, meal plan, nutrition & lifestyle
+   ========================================================================== */
+
+/* Dashboard Navigation Bar */
+.dashboard-nav {
+  background-color: var(--surface-color);
+  border-bottom: 1px solid rgba(45, 106, 79, 0.12);
+  box-shadow: var(--shadow-sm);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.dashboard-nav .navbar {
+  height: 4.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.dashboard-nav .nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.user-status-pill {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background-color: var(--surface-alt);
+  padding: 0.45rem 1rem;
+  border-radius: var(--radius-full);
+  font-size: 0.88rem;
+  color: var(--text-main);
+  border: 1px solid rgba(45, 106, 79, 0.15);
+}
+
+.user-avatar-sm {
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: var(--radius-full);
+  background-color: var(--primary-color);
+  color: var(--text-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.8rem;
+}
+
+/* ==========================================================================
+   MAIN DASHBOARD STYLES
+   ========================================================================== */
+.dashboard-main {
+  flex: 1;
+  padding: 2.5rem 0 4.5rem 0;
+  background: radial-gradient(circle at top right, rgba(216, 243, 220, 0.35), transparent 60%),
+              var(--bg-color);
+}
+
+/* Profile Banner */
+.profile-banner {
+  background-color: var(--surface-color);
+  border-radius: var(--radius-lg);
+  padding: 2.25rem 2.5rem;
+  box-shadow: var(--shadow-md);
+  border: 1px solid rgba(45, 106, 79, 0.12);
+  margin-bottom: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.profile-banner-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.profile-greeting {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.profile-user-name {
+  font-size: 2.1rem;
+  font-weight: 800;
+  color: var(--text-main);
+}
+
+.profile-tagline {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+}
+
+.profile-action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+/* Metric Chips Container */
+.metric-chips-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--surface-alt);
+}
+
+.metric-chip {
+  background-color: var(--surface-alt);
+  padding: 0.85rem 1rem;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(45, 106, 79, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.chip-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--primary-color);
+  letter-spacing: 0.4px;
+}
+
+.chip-value {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.chip-subtext {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+/* Condition Disclaimer Banner */
+.condition-warning-banner {
+  background-color: #fffbe6;
+  border: 1px solid #ffe58f;
+  border-left: 4px solid #faad14;
+  border-radius: var(--radius-md);
+  padding: 1rem 1.25rem;
+  margin-bottom: 2rem;
+  font-size: 0.9rem;
+  color: #873800;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  line-height: 1.5;
+}
+
+/* Section Containers */
+.dashboard-section {
+  margin-bottom: 2.75rem;
+  scroll-margin-top: 5.5rem;
+}
+
+.dashboard-section-header {
+  margin-bottom: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.dashboard-section-title {
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: var(--text-main);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.dashboard-section-subtitle {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+/* ==========================================================================
+   SECTION 1: RECOMMENDED FOODS
+   ========================================================================== */
+.foods-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+
+.food-card {
+  background-color: var(--surface-color);
+  border-radius: var(--radius-md);
+  padding: 1.35rem 1.25rem;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-top: 3.5px solid var(--primary-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1rem;
+  transition: var(--transition);
+}
+
+.food-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+  border-color: rgba(45, 106, 79, 0.25);
+}
+
+.food-card-top {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.food-card-name {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.food-card-serving {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--primary-color);
+  background-color: var(--primary-soft);
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--radius-sm);
+  width: fit-content;
+}
+
+.food-macros-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #fafbfb;
+  padding: 0.5rem 0.65rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  border: 1px solid #f0f3f5;
+}
+
+.food-macro-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.macro-val {
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.food-card-benefit {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.45;
+}
+
+/* ==========================================================================
+   SECTION 2: PERSONALIZED DAILY MEAL PLAN (4 MEALS)
+   ========================================================================== */
+.meal-plan-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+}
+
+.meal-card {
+  background-color: var(--surface-color);
+  border-radius: var(--radius-md);
+  padding: 1.4rem 1.25rem;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-top: 3.5px solid var(--primary-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1rem;
+  transition: var(--transition);
+}
+
+.meal-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+  border-color: rgba(45, 106, 79, 0.25);
+}
+
+.meal-card-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  border-bottom: 1.5px solid var(--surface-alt);
+  padding-bottom: 0.75rem;
+}
+
+.meal-card-title {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--text-main);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.meal-time-badge {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--primary-color);
+  background-color: var(--primary-soft);
+  padding: 0.15rem 0.5rem;
+  border-radius: var(--radius-sm);
+  width: fit-content;
+}
+
+.meal-items-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.meal-item {
+  font-size: 0.88rem;
+  line-height: 1.45;
+  color: var(--text-main);
+  padding-left: 1.2rem;
+  position: relative;
+}
+
+.meal-item::before {
+  content: "✔";
+  color: var(--primary-color);
+  font-weight: bold;
+  font-size: 0.8rem;
+  position: absolute;
+  left: 0;
+  top: 0.1rem;
+}
+
+.meal-note {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  background-color: #fafbfb;
+  padding: 0.5rem 0.65rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid #f0f3f5;
+  line-height: 1.4;
+}
+
+/* ==========================================================================
+   SECTION 3: DAILY NUTRITION TARGETS
+   ========================================================================== */
+.nutrition-targets-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+
+.nutrition-target-card {
+  background-color: var(--surface-color);
+  border-radius: var(--radius-md);
+  padding: 1.35rem 1.25rem;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  transition: var(--transition);
+}
+
+.nutrition-target-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: rgba(45, 106, 79, 0.2);
+}
+
+.target-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.target-label {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.target-value-container {
+  display: flex;
+  align-items: baseline;
+  gap: 0.35rem;
+}
+
+.target-number {
+  font-size: 1.85rem;
+  font-weight: 800;
+  color: var(--primary-color);
+  line-height: 1;
+}
+
+.target-unit {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.target-explanation {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+  padding-top: 0.4rem;
+  border-top: 1px solid var(--surface-alt);
+}
+
+/* ==========================================================================
+   SECTION 4: FOODS TO AVOID / LIMIT (CONSIDER CAREFULLY)
+   ========================================================================== */
+.avoid-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+
+.avoid-card {
+  background-color: var(--surface-color);
+  border-radius: var(--radius-md);
+  padding: 1.25rem 1.35rem;
+  border: 1px solid #ffd8d2;
+  border-left: 4px solid var(--warning);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.avoid-card-allergen {
+  background-color: #fff1f0;
+  border-color: #ffa39e;
+  border-left: 4.5px solid var(--danger);
+}
+
+.avoid-card-title {
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: #7a271a;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.avoid-card-allergen .avoid-card-title {
+  color: #a8071a;
+  font-size: 1rem;
+}
+
+.avoid-card-reason {
+  font-size: 0.85rem;
+  color: #5c3029;
+  line-height: 1.4;
+}
+
+/* ==========================================================================
+   SECTION 5: LIFESTYLE & HABIT SUGGESTIONS
+   ========================================================================== */
+.lifestyle-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+}
+
+.lifestyle-card {
+  background-color: var(--surface-color);
+  border-radius: var(--radius-md);
+  padding: 1.35rem 1.25rem;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  transition: var(--transition);
+}
+
+.lifestyle-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.lifestyle-card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.lifestyle-card-icon {
+  font-size: 1.4rem;
+  line-height: 1;
+}
+
+.lifestyle-card-category {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--primary-color);
+}
+
+.lifestyle-card-tip {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+/* Disclaimer Banner */
+.disclaimer-banner {
+  background-color: var(--surface-color);
+  border-left: 4px solid var(--primary-color);
+  padding: 1.25rem 1.5rem;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  box-shadow: var(--shadow-sm);
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin-top: 2rem;
+}
+
+/* Empty State / Welcome Card */
+.welcome-card {
+  background-color: var(--surface-color);
+  border-radius: var(--radius-lg);
+  padding: 3.5rem 2.5rem;
+  box-shadow: var(--shadow-md);
+  border: 1px solid rgba(45, 106, 79, 0.1);
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.welcome-icon {
+  font-size: 3.5rem;
+  margin-bottom: 1.25rem;
+  line-height: 1;
+}
+
+.welcome-title {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--text-main);
+  margin-bottom: 0.75rem;
+}
+
+.welcome-subtitle {
+  font-size: 1.05rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+  .metric-chips-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .foods-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .meal-plan-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .nutrition-targets-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .avoid-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .lifestyle-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .profile-banner {
+    padding: 1.75rem 1.5rem;
+  }
+
+  .metric-chips-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .foods-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .meal-plan-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .nutrition-targets-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .lifestyle-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .profile-user-name {
+    font-size: 1.6rem;
+  }
+
+  .dashboard-nav .navbar {
+    height: auto;
+    padding: 0.75rem 0;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .dashboard-nav .nav-actions {
+    width: 100%;
+    justify-content: space-between;
+  }
+}

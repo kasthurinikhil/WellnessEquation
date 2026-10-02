@@ -1,0 +1,92 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Sign up for The Wellness Equation to start your personalized health journey.">
+    <title>Create Account — The Wellness Equation</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/auth.css">
+</head>
+<body>
+
+    <main class="auth-wrapper">
+        <div class="auth-card">
+            <!-- Brand & Heading -->
+            <div class="auth-header">
+                <a href="index.html" class="auth-brand" aria-label="The Wellness Equation Home">
+                    <span class="brand-icon" aria-hidden="true">🌱</span>
+                    <span>The Wellness Equation</span>
+                </a>
+                <h1 class="auth-title">Create Account</h1>
+                <p class="auth-subtitle">Join us to discover your personalized wellness equation</p>
+            </div>
+
+            <!-- Error / Success Alert Box -->
+            <div id="auth-message" class="auth-message auth-message-hidden" role="alert"></div>
+
+            <!-- Sign Up Form -->
+            <form id="signup-form" class="auth-form" novalidate>
+                <!-- Email Field -->
+                <div class="form-group">
+                    <label for="signup-email" class="form-label">Email Address</label>
+                    <input 
+                        type="email" 
+                        id="signup-email" 
+                        name="email" 
+                        class="form-input" 
+                        placeholder="you@example.com" 
+                        required 
+                        autocomplete="email"
+                    >
+                </div>
+
+                <!-- Password Field -->
+                <div class="form-group">
+                    <label for="signup-password" class="form-label">Password</label>
+                    <input 
+                        type="password" 
+                        id="signup-password" 
+                        name="password" 
+                        class="form-input" 
+                        placeholder="Minimum 6 characters" 
+                        required 
+                        minlength="6"
+                        autocomplete="new-password"
+                    >
+                    <span class="form-hint">Must be at least 6 characters long</span>
+                </div>
+
+                <!-- Confirm Password Field -->
+                <div class="form-group">
+                    <label for="signup-confirm-password" class="form-label">Confirm Password</label>
+                    <input 
+                        type="password" 
+                        id="signup-confirm-password" 
+                        name="confirmPassword" 
+                        class="form-input" 
+                        placeholder="Re-enter your password" 
+                        required 
+                        autocomplete="new-password"
+                    >
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" id="signup-submit-btn" class="btn btn-primary btn-auth">
+                    <span>Create Account</span>
+                </button>
+            </form>
+
+            <!-- Navigation to Login -->
+            <div class="auth-footer">
+                <p>Already have an account? <a href="login.html">Log In</a></p>
+            </div>
+        </div>
+
+        <a href="index.html" class="back-to-home">← Return to Home</a>
+    </main>
+
+    <!-- Load Modular Auth Logic -->
+    <script type="module" src="js/auth.js"></script>
+</body>
+</html>

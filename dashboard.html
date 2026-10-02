@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Personalized wellness recommendations and health dashboard for The Wellness Equation.">
+    <title>Dashboard — The Wellness Equation</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header class="site-header dashboard-nav">
+        <div class="container">
+            <nav class="navbar" aria-label="Dashboard Navigation">
+                <a href="dashboard.html" class="nav-brand" aria-label="The Wellness Equation Dashboard">
+                    <span class="brand-icon" aria-hidden="true">🌱</span>
+                    <span>The Wellness Equation</span>
+                </a>
+
+                <div class="nav-actions">
+                    <div class="user-status-pill" id="user-pill">
+                        <span class="user-avatar-sm" id="user-avatar">👤</span>
+                        <span id="user-email-display">Loading account...</span>
+                    </div>
+                    <a href="survey.html" class="btn btn-secondary" id="nav-edit-survey-btn">Edit Survey</a>
+                    <button type="button" class="btn btn-outline" id="logout-btn">Log Out</button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Dashboard Area -->
+    <main class="dashboard-main">
+        <div class="container" id="dashboard-container">
+            
+            <!-- Dynamic State Loading Placeholder (Replaced by js/dashboard.js) -->
+            <div class="welcome-card" id="dashboard-loading-state">
+                <div class="welcome-icon" aria-hidden="true">⏳</div>
+                <h1 class="welcome-title">Loading Your Wellness Profile...</h1>
+                <p class="welcome-subtitle">
+                    Retrieving your health metrics from Cloud Firestore and generating personalized recommendations...
+                </p>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-bottom" style="padding: 1.5rem 0; border: none;">
+                <p>&copy; 2026 The Wellness Equation. Student Portfolio Project.</p>
+                <p>Personalized Rule-Based Wellness Insights</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Load Dashboard Controller Module -->
+    <script type="module" src="js/dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,344 @@
+﻿/* ==========================================================================
+   THE WELLNESS EQUATION - SURVEY STYLES (css/survey.css)
+   Responsibility: Styling for survey.html form elements, cards, and validation
+   ========================================================================== */
+
+.survey-wrapper {
+  padding: 2.5rem 0 5rem 0;
+  background: radial-gradient(circle at top right, rgba(216, 243, 220, 0.4), transparent 60%),
+              radial-gradient(circle at bottom left, rgba(82, 183, 136, 0.15), transparent 50%),
+              var(--bg-color);
+  min-height: calc(100vh - 4.5rem);
+}
+
+.survey-container {
+  max-width: 820px;
+  margin: 0 auto;
+}
+
+/* Survey Main Card */
+.survey-card {
+  background-color: var(--surface-color);
+  border-radius: var(--radius-lg);
+  padding: 3rem 2.75rem;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid rgba(45, 106, 79, 0.12);
+}
+
+/* Survey Header & Intro */
+.survey-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.survey-title {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--text-main);
+  margin-bottom: 0.5rem;
+}
+
+.survey-subtitle {
+  font-size: 1rem;
+  color: var(--text-muted);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Progress Tracker Bar */
+.survey-progress-tracker {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--surface-alt);
+}
+
+.progress-step {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background-color: var(--surface-alt);
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(45, 106, 79, 0.08);
+}
+
+.step-badge {
+  width: 1.85rem;
+  height: 1.85rem;
+  border-radius: var(--radius-full);
+  background-color: var(--primary-color);
+  color: var(--text-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.step-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.step-tag {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--primary-color);
+  letter-spacing: 0.5px;
+}
+
+.step-name {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-main);
+  white-space: nowrap;
+}
+
+/* Form Structure */
+.survey-form {
+  display: flex;
+  flex-direction: column;
+  gap: 2.25rem;
+}
+
+.form-section-card {
+  background-color: #fafbfb;
+  border: 1px solid #e2e8f0;
+  border-radius: var(--radius-md);
+  padding: 1.75rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  transition: var(--transition);
+}
+
+.form-section-card:hover {
+  border-color: rgba(82, 183, 136, 0.5);
+  box-shadow: var(--shadow-sm);
+}
+
+.form-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1.5px solid rgba(45, 106, 79, 0.12);
+  padding-bottom: 0.6rem;
+  margin-bottom: 0.25rem;
+}
+
+.form-section-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.form-section-count {
+  font-size: 0.75rem;
+  background-color: var(--primary-soft);
+  color: var(--primary-color);
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--radius-full);
+  font-weight: 600;
+}
+
+/* Grids & Field Layout */
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+
+.survey-form .form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.survey-form .form-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-main);
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.required-mark {
+  color: var(--danger);
+  font-weight: 700;
+}
+
+.survey-form .form-input,
+.survey-form .form-select {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  font-size: 0.95rem;
+  font-family: inherit;
+  border: 1.5px solid #cbd5e1;
+  border-radius: var(--radius-md);
+  background-color: var(--surface-color);
+  color: var(--text-main);
+  transition: var(--transition);
+  outline: none;
+}
+
+.survey-form .form-input:focus,
+.survey-form .form-select:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(82, 183, 136, 0.25);
+}
+
+.survey-form .form-hint {
+  font-size: 0.8rem;
+  color: var(--text-light);
+}
+
+/* Checkbox Selection Grid */
+.checkbox-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+  margin-top: 0.35rem;
+}
+
+.checkbox-card {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background-color: var(--surface-color);
+  padding: 0.65rem 0.85rem;
+  border: 1.5px solid #cbd5e1;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: var(--transition);
+  user-select: none;
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--text-main);
+}
+
+.checkbox-card:hover {
+  border-color: var(--primary-color);
+  background-color: var(--surface-alt);
+}
+
+.checkbox-card input[type="checkbox"] {
+  width: 1.1rem;
+  height: 1.1rem;
+  accent-color: var(--primary-color);
+  cursor: pointer;
+}
+
+.checkbox-card.checked {
+  border-color: var(--primary-color);
+  background-color: var(--primary-soft);
+  color: var(--primary-hover);
+  font-weight: 600;
+}
+
+.checkbox-card.none-option {
+  border-left: 3.5px solid var(--primary-color);
+}
+
+.other-input-group {
+  margin-top: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+/* Alert & Message Box */
+.survey-message {
+  padding: 1rem 1.25rem;
+  border-radius: var(--radius-md);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  animation: fadeIn 0.2s ease-in-out;
+}
+
+.survey-message-hidden {
+  display: none;
+}
+
+.survey-message-error {
+  background-color: #ffebe9;
+  border: 1px solid #ff8182;
+  color: #c92a2a;
+}
+
+.survey-message-success {
+  background-color: #e6fcf5;
+  border: 1px solid #63e6be;
+  color: #087f5b;
+}
+
+/* Submit Actions */
+.survey-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.btn-survey-submit {
+  width: 100%;
+  padding: 1rem;
+  font-size: 1.1rem;
+  box-shadow: var(--shadow-md);
+}
+
+.btn-survey-submit:disabled {
+  opacity: 0.75;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.survey-privacy-note {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+/* Responsive Styles */
+@media (max-width: 820px) {
+  .survey-card {
+    padding: 2rem 1.5rem;
+  }
+
+  .survey-progress-tracker {
+    grid-template-columns: 1fr;
+    gap: 0.6rem;
+  }
+
+  .checkbox-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .survey-title {
+    font-size: 1.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .checkbox-grid {
+    grid-template-columns: 1fr;
+  }
+}

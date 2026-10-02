@@ -1,0 +1,393 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Complete your personalized health and wellness survey for The Wellness Equation.">
+    <title>Wellness Survey — The Wellness Equation</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/survey.css">
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header class="site-header dashboard-nav">
+        <div class="container">
+            <nav class="navbar" aria-label="Survey Navigation">
+                <a href="dashboard.html" class="nav-brand" aria-label="The Wellness Equation Dashboard">
+                    <span class="brand-icon" aria-hidden="true">🌱</span>
+                    <span>The Wellness Equation</span>
+                </a>
+
+                <div class="nav-actions">
+                    <a href="dashboard.html" class="btn btn-secondary">Dashboard</a>
+                    <button type="button" class="btn btn-outline" id="survey-logout-btn">Log Out</button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Survey Content -->
+    <main class="survey-wrapper">
+        <div class="container survey-container">
+            <div class="survey-card">
+                
+                <!-- Survey Header -->
+                <div class="survey-header">
+                    <span class="section-badge">Intake Questionnaire</span>
+                    <h1 class="survey-title">Calculate Your Wellness Equation</h1>
+                    <p class="survey-subtitle">
+                        Provide your physical metrics, diet habits, and health priorities. Our rule-based system will generate personalized food recommendations, daily nutrition targets, and lifestyle advice.
+                    </p>
+                </div>
+
+                <!-- 3-Step Progress Tracker Indicator -->
+                <div class="survey-progress-tracker" aria-label="Survey Progress">
+                    <div class="progress-step">
+                        <div class="step-badge" aria-hidden="true">1</div>
+                        <div class="step-details">
+                            <span class="step-tag">Step 1</span>
+                            <span class="step-name">Personal Metrics</span>
+                        </div>
+                    </div>
+
+                    <div class="progress-step">
+                        <div class="step-badge" aria-hidden="true">2</div>
+                        <div class="step-details">
+                            <span class="step-tag">Step 2</span>
+                            <span class="step-name">Body & Lifestyle</span>
+                        </div>
+                    </div>
+
+                    <div class="progress-step">
+                        <div class="step-badge" aria-hidden="true">3</div>
+                        <div class="step-details">
+                            <span class="step-tag">Step 3</span>
+                            <span class="step-name">Health & Goals</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Alert Message Box -->
+                <div id="survey-message" class="survey-message survey-message-hidden" role="alert"></div>
+
+                <!-- Survey Form -->
+                <form id="survey-form" class="survey-form" novalidate>
+                    
+                    <!-- Section 1: Personal Metrics -->
+                    <div class="form-section-card">
+                        <div class="form-section-header">
+                            <h2 class="form-section-title">
+                                <span>👤</span>
+                                <span>1. Personal Information</span>
+                            </h2>
+                            <span class="form-section-count">3 Questions</span>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="survey-name" class="form-label">
+                                    Full Name <span class="required-mark">*</span>
+                                </label>
+                                <input 
+                                    type="text" 
+                                    id="survey-name" 
+                                    name="name" 
+                                    class="form-input" 
+                                    placeholder="e.g. Jordan Smith" 
+                                    required
+                                >
+                            </div>
+
+                            <div class="form-group">
+                                <label for="survey-age" class="form-label">
+                                    Age (years) <span class="required-mark">*</span>
+                                </label>
+                                <input 
+                                    type="number" 
+                                    id="survey-age" 
+                                    name="age" 
+                                    class="form-input" 
+                                    placeholder="e.g. 24" 
+                                    min="12" 
+                                    max="120" 
+                                    required
+                                >
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="survey-gender" class="form-label">
+                                Gender <span class="required-mark">*</span>
+                            </label>
+                            <select id="survey-gender" name="gender" class="form-select" required>
+                                <option value="">Select Gender</option>
+                                <option value="Female">Female</option>
+                                <option value="Male">Male</option>
+                                <option value="Non-binary">Non-binary</option>
+                                <option value="Prefer not to say">Prefer not to say</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Section 2: Body & Diet -->
+                    <div class="form-section-card">
+                        <div class="form-section-header">
+                            <h2 class="form-section-title">
+                                <span>🥗</span>
+                                <span>2. Body & Lifestyle Habits</span>
+                            </h2>
+                            <span class="form-section-count">4 Questions</span>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="survey-height" class="form-label">
+                                    Height (cm) <span class="required-mark">*</span>
+                                </label>
+                                <input 
+                                    type="number" 
+                                    id="survey-height" 
+                                    name="height" 
+                                    class="form-input" 
+                                    placeholder="e.g. 175" 
+                                    min="50" 
+                                    max="260" 
+                                    required
+                                >
+                                <span class="form-hint">Used for BMR, TDEE, and healthy caloric calculations</span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="survey-weight" class="form-label">
+                                    Weight (kg) <span class="required-mark">*</span>
+                                </label>
+                                <input 
+                                    type="number" 
+                                    id="survey-weight" 
+                                    name="weight" 
+                                    class="form-input" 
+                                    placeholder="e.g. 68.5" 
+                                    min="20" 
+                                    max="300" 
+                                    step="0.1" 
+                                    required
+                                >
+                                <span class="form-hint">Used for daily protein targets and hydration estimations</span>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="survey-diet" class="form-label">
+                                    Dietary Preference <span class="required-mark">*</span>
+                                </label>
+                                <select id="survey-diet" name="dietPreference" class="form-select" required>
+                                    <option value="">Select Diet Preference</option>
+                                    <option value="Omnivore / Standard">Omnivore / Standard (No restrictions)</option>
+                                    <option value="Vegetarian">Vegetarian (No meat/fish)</option>
+                                    <option value="Vegan">Vegan (100% plant-based)</option>
+                                    <option value="Pescatarian">Pescatarian (Vegetarian + Seafood)</option>
+                                    <option value="Keto / Low-Carb">Keto / Low-Carb</option>
+                                    <option value="Mediterranean">Mediterranean Diet</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="survey-exercise" class="form-label">
+                                    Physical Activity Level <span class="required-mark">*</span>
+                                </label>
+                                <select id="survey-exercise" name="exerciseLevel" class="form-select" required>
+                                    <option value="">Select Activity Level</option>
+                                    <option value="Sedentary">Sedentary (Little or no exercise)</option>
+                                    <option value="Light">Light (1-2 days/week)</option>
+                                    <option value="Moderate">Moderate (3-5 days/week)</option>
+                                    <option value="Active">Active (6-7 days/week)</option>
+                                    <option value="Very Active">Very Active (Heavy training / Physical job)</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Section 3: Health Considerations & Goals -->
+                    <div class="form-section-card">
+                        <div class="form-section-header">
+                            <h2 class="form-section-title">
+                                <span>🎯</span>
+                                <span>3. Health Considerations & Goals</span>
+                            </h2>
+                            <span class="form-section-count">3 Questions</span>
+                        </div>
+
+                        <!-- Structured Health Conditions -->
+                        <div class="form-group">
+                            <label class="form-label">
+                                Health Conditions & Considerations (Select all that apply)
+                            </label>
+                            <span class="form-hint">Used to provide cautious general wellness suggestions. Not for medical diagnosis.</span>
+                            
+                            <div class="checkbox-grid" id="health-conditions-group">
+                                <label class="checkbox-card none-option">
+                                    <input type="checkbox" name="healthCondition" value="None" id="health-none" checked>
+                                    <span>None</span>
+                                </label>
+                                <label class="checkbox-card">
+                                    <input type="checkbox" name="healthCondition" value="Diabetes">
+                                    <span>Diabetes</span>
+                                </label>
+                                <label class="checkbox-card">
+                                    <input type="checkbox" name="healthCondition" value="High Blood Pressure">
+                                    <span>High Blood Pressure</span>
+                                </label>
+                                <label class="checkbox-card">
+                                    <input type="checkbox" name="healthCondition" value="High Cholesterol">
+                                    <span>High Cholesterol</span>
+                                </label>
+                                <label class="checkbox-card">
+                                    <input type="checkbox" name="healthCondition" value="Anemia">
+                                    <span>Anemia</span>
+                                </label>
+                                <label class="checkbox-card">
+                                    <input type="checkbox" name="healthCondition" value="Thyroid Disorder">
+                                    <span>Thyroid Disorder</span>
+                                </label>
+                                <label class="checkbox-card">
+                                    <input type="checkbox" name="healthCondition" value="PCOS">
+                                    <span>PCOS</span>
+                                </label>
+                                <label class="checkbox-card">
+                                    <input type="checkbox" name="healthCondition" value="Heart Disease">
+                                    <span>Heart Disease</span>
+                                </label>
+                                <label class="checkbox-card">
+                                    <input type="checkbox" name="healthCondition" value="Kidney Disease">
+                                    <span>Kidney Disease</span>
+                                </label>
+                                <label class="checkbox-card">
+                                    <input type="checkbox" name="healthCondition" value="Liver Disease">
+                                    <span>Liver Disease</span>
+                                </label>
+                                <label class="checkbox-card">
+                                    <input type="checkbox" name="healthCondition" value="Digestive/Gastrointestinal Issues">
+                                    <span>Digestive Issues</span>
+                                </label>
+                                <label class="checkbox-card">
+                                    <input type="checkbox" name="healthCondition" value="Other" id="health-other-cb">
+                                    <span>Other</span>
+                                </label>
+                            </div>
+
+                            <div class="other-input-group" id="health-other-container" style="display: none;">
+                                <label for="survey-health-other" class="form-label" style="font-size: 0.82rem;">Specify Other Health Condition:</label>
+                                <input type="text" id="survey-health-other" class="form-input" placeholder="e.g. Acid reflux, Joint stiffness">
+                            </div>
+                        </div>
+
+                        <!-- Structured Food Allergies -->
+                        <div class="form-group" style="margin-top: 0.5rem;">
+                            <label class="form-label">
+                                Food Allergies & Intolerances (Select all that apply)
+                            </label>
+                            <span class="form-hint">Foods containing any selected allergen will be strictly excluded from recommendations.</span>
+                            
+                            <div class="checkbox-grid" id="allergies-group">
+                                <label class="checkbox-card none-option">
+                                    <input type="checkbox" name="allergy" value="None" id="allergy-none" checked>
+                                    <span>None</span>
+                                </label>
+                                <label class="checkbox-card">
+                                    <input type="checkbox" name="allergy" value="Peanuts">
+                                    <span>Peanuts</span>
+                                </label>
+                                <label class="checkbox-card">
+                                    <input type="checkbox" name="allergy" value="Tree Nuts">
+                                    <span>Tree Nuts</span>
+                                </label>
+                                <label class="checkbox-card">
+                                    <input type="checkbox" name="allergy" value="Milk/Dairy">
+                                    <span>Milk / Dairy</span>
+                                </label>
+                                <label class="checkbox-card">
+                                    <input type="checkbox" name="allergy" value="Eggs">
+                                    <span>Eggs</span>
+                                </label>
+                                <label class="checkbox-card">
+                                    <input type="checkbox" name="allergy" value="Soy">
+                                    <span>Soy</span>
+                                </label>
+                                <label class="checkbox-card">
+                                    <input type="checkbox" name="allergy" value="Wheat/Gluten">
+                                    <span>Wheat / Gluten</span>
+                                </label>
+                                <label class="checkbox-card">
+                                    <input type="checkbox" name="allergy" value="Fish">
+                                    <span>Fish</span>
+                                </label>
+                                <label class="checkbox-card">
+                                    <input type="checkbox" name="allergy" value="Shellfish">
+                                    <span>Shellfish</span>
+                                </label>
+                                <label class="checkbox-card">
+                                    <input type="checkbox" name="allergy" value="Sesame">
+                                    <span>Sesame</span>
+                                </label>
+                                <label class="checkbox-card">
+                                    <input type="checkbox" name="allergy" value="Other" id="allergy-other-cb">
+                                    <span>Other</span>
+                                </label>
+                            </div>
+
+                            <div class="other-input-group" id="allergy-other-container" style="display: none;">
+                                <label for="survey-allergy-other" class="form-label" style="font-size: 0.82rem;">Specify Other Allergy / Intolerance:</label>
+                                <input type="text" id="survey-allergy-other" class="form-input" placeholder="e.g. Mustard, Sulfites, Strawberries">
+                            </div>
+                        </div>
+
+                        <!-- Primary Goal -->
+                        <div class="form-group" style="margin-top: 0.5rem;">
+                            <label for="survey-goal" class="form-label">
+                                Primary Wellness Goal <span class="required-mark">*</span>
+                            </label>
+                            <select id="survey-goal" name="goal" class="form-select" required>
+                                <option value="">Select Primary Goal</option>
+                                <option value="Weight Loss">Weight Loss & Fat Reduction</option>
+                                <option value="Weight Maintenance">Weight Maintenance & Balanced Habits</option>
+                                <option value="Muscle Gain">Muscle Gain & Strength Building</option>
+                                <option value="Boost Energy">Boost Daily Energy & Vitality</option>
+                                <option value="Better Digestion">Improve Digestion & Gut Health</option>
+                                <option value="Heart Health">Cardiovascular & Heart Health</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Actions -->
+                    <div class="survey-actions">
+                        <button type="submit" id="survey-submit-btn" class="btn btn-primary btn-lg btn-survey-submit">
+                            <span>Save Profile & View Recommendations →</span>
+                        </button>
+                        <p class="survey-privacy-note">
+                            🔒 Your personal health information is private, isolated to your unique account UID, and never shared.
+                        </p>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-bottom" style="padding: 1.5rem 0; border: none;">
+                <p>&copy; 2026 The Wellness Equation. Student Portfolio Project.</p>
+                <p>Private & User-Scoped Health Profile</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Load Survey Module -->
+    <script type="module" src="js/survey.js"></script>
+</body>
+</html>
