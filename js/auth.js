@@ -1,4 +1,4 @@
-﻿// ==========================================================================
+// ==========================================================================
 // THE WELLNESS EQUATION - AUTHENTICATION LOGIC (js/auth.js)
 // Responsibility: ONLY authentication handlers (sign up, login, logout, auth state guards)
 // ==========================================================================
@@ -36,11 +36,11 @@ export function getAuthErrorMessage(errorCode) {
       return "Email/Password sign-in is not enabled. Please enable it in your Firebase Console (Authentication > Sign-in method).";
     case "auth/api-key-not-valid":
     case "auth/invalid-api-key":
-      return "Invalid Firebase API Key. Please paste your valid Firebase configuration keys in js/firebase.js.";
+      return "Invalid Firebase API Key. Please verify your Firebase configuration in js/firebase.js.";
     case "auth/configuration-not-found":
       return "Firebase configuration not found. Please verify your settings in js/firebase.js.";
     default:
-      return `Authentication error (${errorCode || "Unknown"}). Please verify your credentials or Firebase configuration.`;
+      return `Authentication error (${errorCode || "Unknown"}). Please verify your credentials.`;
   }
 }
 
@@ -65,7 +65,6 @@ function clearAuthMessage(messageElement) {
 
 /**
  * Register a new user with Firebase Authentication
- * Note: Passwords are encrypted by Firebase and NEVER saved to Firestore.
  */
 export async function signUpUser(email, password) {
   return await createUserWithEmailAndPassword(auth, email, password);
@@ -83,10 +82,11 @@ export async function loginUser(email, password) {
  */
 export async function logoutUser() {
   try {
+    console.log("[Auth] Signing out current user...");
     await signOut(auth);
     window.location.href = "login.html";
   } catch (error) {
-    console.error("Error signing out:", error);
+    console.error("[Auth] Error signing out:", error);
     alert("Failed to log out. Please try again.");
   }
 }
@@ -95,28 +95,36 @@ export async function logoutUser() {
    4. Form Listeners & Initialization
    -------------------------------------------------------------------------- */
 function initAuth() {
-  console.log("[The Wellness Equation] Initializing authentication listeners...");
+  console.log("[Auth] Initializing authentication listeners...");
   const messageBox = document.getElementById("auth-message");
 
   // A. Handle Sign Up Form Submission (signup.html)
   const signupForm = document.getElementById("signup-form");
   if (signupForm) {
-    console.log("[The Wellness Equation] Signup form found. Attaching submit listener.");
+    console.log("[Signup] Form found. Attaching submit listener.");
     const signupBtn = document.getElementById("signup-submit-btn");
 
     signupForm.addEventListener("submit", async (event) => {
       event.preventDefault();
+      console.log("[Signup] Form submitted");
       clearAuthMessage(messageBox);
 
-      const email = document.getElementById("signup-email").value.trim();
-      const password = document.getElementById("signup-password").value;
-      const confirmPassword = document.getElementById("signup-confirm-password").value;
+      const emailInput = document.getElementById("signup-email");
+      const passwordInput = document.getElementById("signup-password");
+      const confirmPasswordInput = document.getElementById("signup-confirm-password");
 
-      console.log(`[The Wellness Equation] Attempting sign-up for: ${email}`);
+      const email = emailInput ? emailInput.value.trim() : "";
+      const password = passwordInput ? passwordInput.value : "";
+      const confirmPassword = confirmPasswordInput ? confirmPasswordInput.value : "";
 
       // Client-side validation
-      if (!email || !password || !confirmPassword) {
-        showAuthMessage(messageBox, "Please fill in all fields.");
+      if (!email) {
+        showAuthMessage(messageBox, "Please enter your email address.");
+        return;
+      }
+
+      if (!password) {
+        showAuthMessage(messageBox, "Please enter a password.");
         return;
       }
 
@@ -130,42 +138,41 @@ function initAuth() {
         return;
       }
 
-      // Check if placeholder config is still present
-      if (auth.app.options.apiKey === "YOUR_API_KEY") {
-        showAuthMessage(
-          messageBox,
-          "Firebase is not configured yet. Please open js/firebase.js and replace the placeholder keys with your Firebase project keys.",
-          "error"
-        );
-        return;
-      }
-
-      // Submit to Firebase Auth
+      // Submit to Firebase Authentication
       try {
-        signupBtn.disabled = true;
-        signupBtn.innerHTML = "<span>Creating Account...</span>";
+        if (signupBtn) {
+          signupBtn.disabled = true;
+          signupBtn.innerHTML = "<span>Creating Account...</span>";
+        }
 
+        console.log("[Signup] Creating Firebase account...");
         const userCredential = await signUpUser(email, password);
         const user = userCredential.user;
 
-        console.log(`[The Wellness Equation] User created successfully: UID=${user.uid}`);
+        console.log("[Signup] Account created:", user.uid);
 
-        showAuthMessage(
-          messageBox,
-          `Account created successfully for ${user.email}! Redirecting to survey...`,
-          "success"
-        );
+        // Confirm that auth.currentUser exists and redirect
+        if (auth.currentUser) {
+          showAuthMessage(
+            messageBox,
+            `Account created successfully! Redirecting to dashboard...`,
+            "success"
+          );
 
-        // Redirect new users directly to the intake survey
-        setTimeout(() => {
-          window.location.href = "survey.html";
-        }, 1200);
+          console.log("[Signup] Redirecting to dashboard...");
+          window.location.href = "dashboard.html";
+        } else {
+          console.log("[Signup] Redirecting to dashboard...");
+          window.location.href = "dashboard.html";
+        }
 
       } catch (error) {
-        console.error("[The Wellness Equation] Signup error:", error);
+        console.error("[Signup] Error creating account:", error);
         showAuthMessage(messageBox, getAuthErrorMessage(error.code), "error");
-        signupBtn.disabled = false;
-        signupBtn.innerHTML = "<span>Create Account</span>";
+        if (signupBtn) {
+          signupBtn.disabled = false;
+          signupBtn.innerHTML = "<span>Create Account</span>";
+        }
       }
     });
   }
@@ -173,17 +180,19 @@ function initAuth() {
   // B. Handle Login Form Submission (login.html)
   const loginForm = document.getElementById("login-form");
   if (loginForm) {
-    console.log("[The Wellness Equation] Login form found. Attaching submit listener.");
+    console.log("[Login] Form found. Attaching submit listener.");
     const loginBtn = document.getElementById("login-submit-btn");
 
     loginForm.addEventListener("submit", async (event) => {
       event.preventDefault();
+      console.log("[Login] Form submitted");
       clearAuthMessage(messageBox);
 
-      const email = document.getElementById("login-email").value.trim();
-      const password = document.getElementById("login-password").value;
+      const emailInput = document.getElementById("login-email");
+      const passwordInput = document.getElementById("login-password");
 
-      console.log(`[The Wellness Equation] Attempting log-in for: ${email}`);
+      const email = emailInput ? emailInput.value.trim() : "";
+      const password = passwordInput ? passwordInput.value : "";
 
       // Client-side validation
       if (!email || !password) {
@@ -191,25 +200,18 @@ function initAuth() {
         return;
       }
 
-      // Check if placeholder config is still present
-      if (auth.app.options.apiKey === "YOUR_API_KEY") {
-        showAuthMessage(
-          messageBox,
-          "Firebase is not configured yet. Please open js/firebase.js and replace the placeholder keys with your Firebase project keys.",
-          "error"
-        );
-        return;
-      }
-
-      // Submit to Firebase Auth
+      // Submit to Firebase Authentication
       try {
-        loginBtn.disabled = true;
-        loginBtn.innerHTML = "<span>Logging In...</span>";
+        if (loginBtn) {
+          loginBtn.disabled = true;
+          loginBtn.innerHTML = "<span>Logging In...</span>";
+        }
 
+        console.log("[Login] Authenticating with Firebase...");
         const userCredential = await loginUser(email, password);
         const user = userCredential.user;
 
-        console.log(`[The Wellness Equation] Login successful: UID=${user.uid}`);
+        console.log("[Login] Login successful");
 
         showAuthMessage(
           messageBox,
@@ -217,16 +219,16 @@ function initAuth() {
           "success"
         );
 
-        // Redirect returning users to dashboard
-        setTimeout(() => {
-          window.location.href = "dashboard.html";
-        }, 1000);
+        console.log("[Login] Redirecting to dashboard...");
+        window.location.href = "dashboard.html";
 
       } catch (error) {
-        console.error("[The Wellness Equation] Login error:", error);
+        console.error("[Login] Error logging in:", error);
         showAuthMessage(messageBox, getAuthErrorMessage(error.code), "error");
-        loginBtn.disabled = false;
-        loginBtn.innerHTML = "<span>Log In</span>";
+        if (loginBtn) {
+          loginBtn.disabled = false;
+          loginBtn.innerHTML = "<span>Log In</span>";
+        }
       }
     });
   }
